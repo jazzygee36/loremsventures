@@ -1,8 +1,4 @@
 import { useEffect, useState } from "react";
-// import EventPrinting from "../assets/eventprinting.jpg";
-// import CardPrinting from "../assets/cardprinting.jpeg";
-// import BagPrinting from "../assets/bagprinting.jpeg";
-// import Umbrella from "../assets/umbrella.jpeg";
 import Africa from "../assets/work/africa.png";
 import Grooms from "../assets/work/groomsmen.png";
 import Bag from "../assets/work/coloeofmul.png";
@@ -21,20 +17,18 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="bg-gradient-to-r from-cyan-700 via-fuchsia-700 to-neutral-900 text-white py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+    <section className="relative bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-500 text-white py-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between relative z-10">
+        {/* Text Content */}
         <div className="md:w-1/2 space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold">
+          <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg">
             Premium Printing Solutions for Your Business
           </h1>
-          <p className="text-lg md:text-xl">
-            Brochures, Flyers, Posters, and Custom Designs — all delivered with
+          <p className="text-lg md:text-xl drop-shadow-md">
+            Brochures, Flyers, Posters, and Custom Designs — delivered with
             quality and speed.
           </p>
           <div className="space-x-4">
-            {/* <button className="px-6 py-3 bg-yellow-400 text-indigo-900 rounded-lg font-semibold hover:bg-yellow-300 transition">
-              Get a Quote
-            </button> */}
             <button className="px-6 py-3 border border-white rounded-lg font-semibold hover:bg-white hover:text-indigo-700 transition">
               View Portfolio
             </button>
@@ -42,7 +36,7 @@ const HeroSection = () => {
         </div>
 
         {/* Image Slider */}
-        <div className="w-full md:w-1/2 mt-10 md:mt-0 relative min-h-[250px] h-[300px] md:h-[400px] overflow-hidden  ">
+        <div className="w-full md:w-1/2 mt-10 md:mt-0 relative min-h-[250px] h-[300px] md:h-[400px] overflow-hidden rounded-lg shadow-xl">
           {images.map((img, index) => (
             <img
               key={index}
@@ -55,6 +49,9 @@ const HeroSection = () => {
           ))}
         </div>
       </div>
+
+      {/* Optional Overlay for depth */}
+      <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
     </section>
   );
 };

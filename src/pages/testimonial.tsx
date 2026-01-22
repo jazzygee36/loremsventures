@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-// Example testimonials
 const testimonials = [
   {
     name: "Adeola Johnson",
@@ -33,56 +32,61 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
-  const [current, setCurrent] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  // Auto-slide testimonials every 5 seconds
+  // Auto slide every 5 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % testimonials.length);
     }, 5000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(timer);
   }, []);
+
+  const activeTestimonial = testimonials[activeIndex];
 
   return (
     <section className="py-20 bg-indigo-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        {/* Header */}
         <h2 className="text-4xl font-bold text-indigo-900 mb-4">
           What Our Clients Say
         </h2>
         <p className="text-lg text-gray-600 mb-12">
-          Hear from our happy clients who trusted BAYREMS Concepts for their
-          printing needs.
+          Trusted by individuals and businesses who rely on{" "}
+          <strong>BAYREMS Concepts</strong> for premium printing services.
         </p>
 
+        {/* Testimonial Card */}
         <div className="relative">
-          {/* Testimonial Card */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center transition duration-500">
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10 flex flex-col items-center transition-all duration-500">
             <img
-              src={testimonials[current].photo}
-              alt={testimonials[current].name}
-              className="w-20 h-20 rounded-full mb-4 object-cover shadow-md"
+              src={activeTestimonial.photo}
+              alt={activeTestimonial.name}
+              className="w-20 h-20 rounded-full mb-5 object-cover shadow-md"
             />
-            <p className="text-gray-700 italic mb-4">
-              "{testimonials[current].feedback}"
+
+            <p className="text-gray-700 italic text-lg mb-6 max-w-2xl">
+              “{activeTestimonial.feedback}”
             </p>
+
             <h3 className="text-lg font-semibold text-indigo-900">
-              {testimonials[current].name}
+              {activeTestimonial.name}
             </h3>
-            <p className="text-gray-500 text-sm">
-              {testimonials[current].role}
-            </p>
+            <p className="text-sm text-gray-500">{activeTestimonial.role}</p>
           </div>
 
-          {/* Navigation Dots */}
-          <div className="flex justify-center mt-6 space-x-2">
-            {testimonials.map((_, idx) => (
-              <span
-                key={idx}
-                className={`w-3 h-3 rounded-full cursor-pointer transition ${
-                  idx === current ? "bg-indigo-900" : "bg-gray-300"
+          {/* Dots */}
+          <div className="flex justify-center mt-6 space-x-3">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === activeIndex
+                    ? "bg-indigo-900 scale-110"
+                    : "bg-gray-300 hover:bg-indigo-400"
                 }`}
-                onClick={() => setCurrent(idx)}
               />
             ))}
           </div>

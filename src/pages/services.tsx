@@ -1,4 +1,4 @@
-import { FaFileAlt, FaPrint, FaBox, FaTshirt } from "react-icons/fa"; // icons for services
+import { FaFileAlt, FaPrint, FaBox, FaTshirt } from "react-icons/fa";
 
 const services = [
   {
@@ -29,27 +29,35 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-24 bg-gradient-to-b from-white via-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-bold text-indigo-900 mb-4">
-          What We Offer
-        </h2>
-        <p className="text-lg text-gray-600 mb-12">
-          <strong>BAYREMS Concepts</strong> provides premium printing solutions
-          for all your needs.
+        <h2 className="text-4xl font-bold text-gray-900 mb-2">What We Offer</h2>
+
+        <div className="w-20 h-1 mx-auto bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-500 rounded-full mb-6"></div>
+
+        <p className="text-lg text-gray-600 mb-14">
+          <strong>BAYREMS Concepts</strong> delivers premium printing solutions
+          with precision, creativity, and speed.
         </p>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg p-6 hover:scale-105 hover:shadow-2xl transition transform duration-300 group cursor-pointer"
+              className="relative bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer"
             >
-              <div className="mb-4">{service.icon}</div>
-              <h3 className="text-xl font-semibold text-indigo-900 mb-2 group-hover:text-yellow-500 transition">
+              {/* Gradient border on hover */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-500 opacity-0 group-hover:opacity-100 transition duration-300 -z-10 blur"></div>
+
+              <div className="mb-5 flex justify-center">{service.icon}</div>
+
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-pink-600 transition">
                 {service.title}
               </h3>
-              <p className="text-gray-600">{service.description}</p>
+
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {service.description}
+              </p>
             </div>
           ))}
         </div>

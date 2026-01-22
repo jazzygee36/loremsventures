@@ -1,20 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MenuIcon from "../assets/menu";
 import CloseIcon from "../assets/close";
 import Logo from "../assets/logo.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const navLinks = ["Home", "Services", "Portfolio", "About", "Contact"];
 
+  // Detect scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="bg-white  sticky w-full z-50 ">
-      <div className="max-w-7xl mx-auto  sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center ">
+    <header
+      className={`sticky top-0 z-50 transition-colors duration-300 ${
+        scrolled
+          ? "bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-500 shadow-md"
+          : "bg-white"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className=" ">
-            <img src={Logo} alt="Lorems Ventures" className="w-42 md:w-42" />
+          <div>
+            <img src={Logo} alt="BAYREMS Concepts" className="w-42 md:w-42" />
           </div>
 
           {/* Desktop Menu */}
@@ -23,7 +40,11 @@ export default function Header() {
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
-                className="text-gray-700 hover:text-indigo-700 font-medium transition"
+                className={`font-medium transition ${
+                  scrolled
+                    ? "text-white hover:text-gray-200"
+                    : "text-gray-700 hover:text-indigo-700"
+                }`}
               >
                 {link}
               </a>
@@ -52,9 +73,6 @@ export default function Header() {
                 {link}
               </a>
             ))}
-            <button className="w-full px-4 py-2 mt-2 bg-indigo-700 text-white rounded-lg hover:bg-indigo-800 transition">
-              Get a Quote
-            </button>
           </div>
         </div>
       )}

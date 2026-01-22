@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-// Import your images
+/* ===== IMAGES ===== */
 import SPL from "../assets/work/SPL.png";
-// import CardPrinting from "../assets/work/";
 import BagPrinting from "../assets/work/bag-benson.png";
 import PlainBags from "../assets/work/plain-bags.png";
 import Zenith from "../assets/work/zenith.png";
@@ -24,32 +23,43 @@ import Love from "../assets/love.jpeg";
 import Quran from "../assets/quran.jpeg";
 import Starfix from "../assets/startfix.jpeg";
 
+/* ===== DATA ===== */
 const portfolioItems = [
   { img: SPL, title: "Flyers" },
   { img: BagPrinting, title: "Custom Bags" },
   { img: Zenith, title: "Towel" },
-  { img: ChurchBill, title: "Hand bill" },
+  { img: ChurchBill, title: "Handbill" },
   { img: EDH, title: "Card" },
   { img: Award, title: "Award" },
   { img: PlainBags, title: "Plain Bags" },
   { img: Visa, title: "Umbrella" },
-  { img: RollUp, title: "rollup banner" },
-  { img: TogetherBag, title: "bag" },
-  { img: DnB, title: "dnb" },
-  { img: Police, title: "School" },
-  { img: Emma, title: "Bag" },
-  { img: Omolara, title: "School" },
-  { img: Key, title: "Key holder" },
-  { img: CompCard, title: "Card" },
-  { img: Biro, title: "Biro" },
-  { img: Love, title: "bag" },
-  { img: Quran, title: "roll up" },
-  { img: CompCard2, title: "Card" },
+  { img: RollUp, title: "Roll-up Banner" },
+  { img: TogetherBag, title: "Branded Bag" },
+  { img: DnB, title: "Event Branding" },
+  { img: Police, title: "School Print" },
+  { img: Emma, title: "Shopping Bag" },
+  { img: Omolara, title: "School Print" },
+  { img: Key, title: "Key Holder" },
+  { img: CompCard, title: "Complimentary Card" },
+  { img: Biro, title: "Branded Biro" },
+  { img: Love, title: "Gift Bag" },
+  { img: Quran, title: "Roll Up" },
+  { img: CompCard2, title: "Business Card" },
   { img: Starfix, title: "Card" },
 ];
 
 const PortfolioSection = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const half = Math.ceil(portfolioItems.length / 2);
+  const topRow = portfolioItems.slice(0, half);
+  const bottomRow = portfolioItems.slice(half);
+
+  const nextImage = () => {
+    if (selectedIndex !== null) {
+      setSelectedIndex((selectedIndex + 1) % portfolioItems.length);
+    }
+  };
 
   const prevImage = () => {
     if (selectedIndex !== null) {
@@ -59,92 +69,102 @@ const PortfolioSection = () => {
     }
   };
 
-  const nextImage = () => {
-    if (selectedIndex !== null) {
-      setSelectedIndex((selectedIndex + 1) % portfolioItems.length);
-    }
-  };
-
   return (
-    <section className="py-20 bg-gradient-to-r from-cyan-50 via-white to-pink-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-bold text-indigo-900 mb-4">
+    <section className="py-24 bg-gradient-to-r from-cyan-50 via-white to-pink-50 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 text-center">
+        {/* ===== HEADER ===== */}
+        <h2 className="text-4xl font-bold text-gray-900 mb-2">
           Our Recent Work
         </h2>
-        <p className="text-lg text-gray-600 mb-12">
-          A showcase of our premium printing projects. Quality and precision in
-          every detail.
+
+        <div className="w-24 h-1 mx-auto bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-500 rounded-full mb-6"></div>
+
+        <p className="text-gray-600 max-w-2xl mx-auto mb-16">
+          A showcase of our premium printing projects — quality, precision, and
+          creativity in every detail.
         </p>
 
-        {/* Thumbnail Grid */}
-        <div className="grid gap-2 md:gap-6 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {portfolioItems.slice(0, 8).map((item, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-xl  cursor-pointer"
-              onClick={() => setSelectedIndex(index)}
-            >
-              <img
-                src={item.img}
-                alt={item.title}
-                className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
-                <p className="text-white text-lg font-semibold">{item.title}</p>
+        {/* ===== SCROLLING GALLERY ===== */}
+        <div className="space-y-10">
+          {/* TOP ROW → RIGHT */}
+          <div className="flex w-max gap-4 animate-scroll-right hover:[animation-play-state:paused]">
+            {[...topRow, ...topRow].map((item, index) => (
+              <div
+                key={`top-${index}`}
+                className="w-64 h-64 flex-shrink-0 rounded-xl bg-white shadow-md overflow-hidden 
+                           cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl group"
+                onClick={() => setSelectedIndex(index % topRow.length)}
+              >
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-full h-full object-contain p-3 transition duration-300 group-hover:scale-105"
+                />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* BOTTOM ROW → LEFT */}
+          <div className="flex w-max gap-4 animate-scroll-left hover:[animation-play-state:paused]">
+            {[...bottomRow, ...bottomRow].map((item, index) => (
+              <div
+                key={`bottom-${index}`}
+                className="w-64 h-64 flex-shrink-0 rounded-xl bg-white shadow-md overflow-hidden 
+                           cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl group"
+                onClick={() =>
+                  setSelectedIndex((index % bottomRow.length) + topRow.length)
+                }
+              >
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-full h-full object-contain p-3 transition duration-300 group-hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* "View All" Button */}
-        {portfolioItems.length > 6 && (
-          <button
-            className="mt-8 px-6 py-3 bg-indigo-900 text-white rounded-lg hover:bg-indigo-700 transition"
-            onClick={() => setSelectedIndex(0)}
-          >
-            View All
-          </button>
-        )}
-
-        {/* Modal Carousel */}
+        {/* ===== MODAL VIEW ===== */}
         {selectedIndex !== null && (
           <div
-            className="fixed inset-0 bg-white bg-opacity-70 flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
             onClick={() => setSelectedIndex(null)}
           >
             <div
-              className="relative max-w-4xl w-full"
-              onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+              className="relative max-w-3xl w-full"
+              onClick={(e) => e.stopPropagation()}
             >
+              {/* Glow */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-500 opacity-20 blur-2xl -z-10"></div>
+
               <img
                 src={portfolioItems[selectedIndex].img}
                 alt={portfolioItems[selectedIndex].title}
-                className="w-full h-auto rounded-lg shadow-2xl"
+                className="w-full rounded-xl shadow-2xl border border-white/20"
               />
-              {/* Close button */}
+
+              {/* Close */}
               <button
-                className="absolute top-2 right-2 text-white bg-gray-800 bg-opacity-50 hover:bg-opacity-70 rounded-full p-2"
                 onClick={() => setSelectedIndex(null)}
+                className="absolute top-3 right-3 bg-black/60 text-white px-3 py-1 rounded-full"
               >
                 ✕
               </button>
-              {/* Prev / Next Buttons */}
+
+              {/* Navigation */}
               <button
-                className="absolute top-1/2 left-2 transform -translate-y-1/2 text-white bg-gray-800 bg-opacity-50 hover:bg-opacity-70 rounded-full p-2"
                 onClick={prevImage}
+                className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 text-white p-2 rounded-full"
               >
                 ‹
               </button>
               <button
-                className="absolute top-1/2 right-2 transform -translate-y-1/2 text-white bg-gray-800 bg-opacity-50 hover:bg-opacity-70 rounded-full p-2"
                 onClick={nextImage}
+                className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 text-white p-2 rounded-full"
               >
                 ›
               </button>
-              {/* Image title */}
-              <p className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-white font-semibold bg-black bg-opacity-40 px-4 py-1 rounded">
-                {portfolioItems[selectedIndex].title}
-              </p>
             </div>
           </div>
         )}
