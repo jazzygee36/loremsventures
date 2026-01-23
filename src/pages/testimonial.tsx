@@ -46,7 +46,7 @@ const Testimonials = () => {
   const activeTestimonial = testimonials[activeIndex];
 
   return (
-    <section className="py-20 bg-indigo-50">
+    <section id="testimony" className="py-20 bg-indigo-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Header */}
         <h2 className="text-4xl font-bold text-indigo-900 mb-4">

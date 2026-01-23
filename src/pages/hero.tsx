@@ -17,7 +17,10 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-500 text-white py-24 overflow-hidden">
+    <section
+      id="home"
+      className="relative bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-500 text-white py-24 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between relative z-10">
         {/* Text Content */}
         <div className="md:w-1/2 space-y-6">

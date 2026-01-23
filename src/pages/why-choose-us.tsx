@@ -29,7 +29,7 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-24 bg-white">
+    <section id="about" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* ===== TITLE ===== */}
         <h2 className="text-4xl font-bold text-gray-900 mb-2">Why Choose Us</h2>

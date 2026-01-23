@@ -40,6 +40,7 @@ export default function Header() {
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
+                onClick={() => setIsOpen(false)}
                 className={`font-medium transition ${
                   scrolled
                     ? "text-white hover:text-gray-200"

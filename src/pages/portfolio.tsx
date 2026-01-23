@@ -70,7 +70,10 @@ const PortfolioSection = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-r from-cyan-50 via-white to-pink-50 overflow-hidden">
+    <section
+      id="portfolio"
+      className="py-24 bg-gradient-to-r from-cyan-50 via-white to-pink-50 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 text-center">
         {/* ===== HEADER ===== */}
         <h2 className="text-4xl font-bold text-gray-900 mb-2">
