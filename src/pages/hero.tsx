@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Africa from "../assets/work/africa.png";
 import Grooms from "../assets/work/groomsmen.png";
 import Bag from "../assets/work/coloeofmul.png";
+import BayCard from "../assets/work/baycard.png";
 
-const images = [Africa, Grooms, Bag];
+const images = [BayCard, Africa, Bag, Grooms];
 
 const HeroSection = () => {
   const [current, setCurrent] = useState(0);
